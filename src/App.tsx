@@ -31,7 +31,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1>{vocabulary[position || 0]}</h1>
+      <h2>{vocabulary[position || 0]}</h2>
       <form
         onSubmit={(e) => {
           e.preventDefault();
