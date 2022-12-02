@@ -22,9 +22,9 @@ function App() {
     });
   };
 
-  const speech = (text:string) => {
+  const speech = (text: string) => {
     var msg = new SpeechSynthesisUtterance();
-    msg.rate = .7; // From 0.1 to 10
+    msg.rate = 0.7; // From 0.1 to 10
     msg.text = text;
     window.speechSynthesis.speak(msg);
   };
@@ -45,6 +45,12 @@ function App() {
           name="position"
           defaultValue={position}
           ref={inputRef}
+          style={{
+            textAlign: "center",
+            border: "none",
+            fontSize: "30px",
+            width: "100px",
+          }}
         />
       </form>
       <div>
@@ -52,12 +58,14 @@ function App() {
           onClick={() => onChange(position - 1)}
           disabled={position === 0}
         >
-          Previous
+          ←
         </button>
-        <button onClick={() => onChange(position + 1)}>Next</button>
+        <button onClick={() => onChange(position + 1)}>→</button>
       </div>
       <div>
-        <button onClick={() => speech(vocabulary[position || 0])}>Speak</button>
+        <button onClick={() => speech(vocabulary[position || 0])}>
+        🔈
+        </button>
       </div>
     </div>
   );
