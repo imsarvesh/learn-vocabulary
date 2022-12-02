@@ -25,7 +25,7 @@ function App() {
   const speech = (text: string) => {
     var msg = new SpeechSynthesisUtterance();
     msg.rate = 0.7; // From 0.1 to 10
-    msg.text = text;
+    msg.text = text.split("").join("-") + "-- --" + text;
     window.speechSynthesis.speak(msg);
   };
 
@@ -63,9 +63,7 @@ function App() {
         <button onClick={() => onChange(position + 1)}>→</button>
       </div>
       <div>
-        <button onClick={() => speech(vocabulary[position || 0])}>
-        🔈
-        </button>
+        <button onClick={() => speech(vocabulary[position || 0])}>🔈</button>
       </div>
     </div>
   );
