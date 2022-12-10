@@ -1,7 +1,7 @@
 import useStore from "appStore";
 import "./App.css";
 import vocabulary from "vocabulary.json";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 
 function App() {
   const inputRef = useRef(null);
@@ -22,10 +22,30 @@ function App() {
     });
   };
 
+  document.onkeydown = checkKey;
+
+  function checkKey(e) {
+    e = e || window.event;
+
+    if (e.keyCode === 38) {
+      onChange(position + 1);
+    } else if (e.keyCode === 40) {
+      onChange(position - 1);
+    } else if (e.keyCode === 37) {
+      onChange(position - 1);
+    } else if (e.keyCode === 39) {
+      onChange(position + 1);
+    }
+  }
+
+  useEffect(() => {}, []);
+
   const speech = (text: string) => {
     var msg = new SpeechSynthesisUtterance();
-    msg.rate = 0.7; // From 0.1 to 10
+    var voices = window.speechSynthesis.getVoices();
+    msg.rate = 0.8; // From 0.1 to 10
     msg.text = text.split("").join("-") + "-" + text;
+    msg.voice = voices[5];
     window.speechSynthesis.speak(msg);
   };
 
