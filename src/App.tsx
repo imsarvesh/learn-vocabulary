@@ -43,7 +43,7 @@ function App() {
   const speech = (text: string) => {
     var msg = new SpeechSynthesisUtterance();
     // var voices = window.speechSynthesis.getVoices();
-    msg.text = text.split("").join("--") + "------" + text;
+    msg.text = text;
     // msg.voice = voices[1];
     window.speechSynthesis.speak(msg);
   };
