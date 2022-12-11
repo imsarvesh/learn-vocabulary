@@ -42,10 +42,9 @@ function App() {
 
   const speech = (text: string) => {
     var msg = new SpeechSynthesisUtterance();
-    var voices = window.speechSynthesis.getVoices();
-    msg.rate = 0.8; // From 0.1 to 10
-    msg.text = text.split("").join("-") + "-" + text;
-    msg.voice = voices[5];
+    // var voices = window.speechSynthesis.getVoices();
+    msg.text = text.split("").join("--") + "------" + text;
+    // msg.voice = voices[1];
     window.speechSynthesis.speak(msg);
   };
 
