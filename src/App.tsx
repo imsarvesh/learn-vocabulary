@@ -28,12 +28,14 @@ function App() {
     e = e || window.event;
 
     if (e.keyCode === 38) {
+      speech(vocabulary[position || 0]);
       onChange(position + 1);
     } else if (e.keyCode === 40) {
       onChange(position - 1);
     } else if (e.keyCode === 37) {
       onChange(position - 1);
     } else if (e.keyCode === 39) {
+      speech(vocabulary[position || 0]);
       onChange(position + 1);
     }
   }
@@ -79,7 +81,14 @@ function App() {
         >
           ←
         </button>
-        <button onClick={() => onChange(position + 1)}>→</button>
+        <button
+          onClick={() => {
+            speech(vocabulary[position || 0]);
+            onChange(position + 1);
+          }}
+        >
+          →
+        </button>
       </div>
       <div>
         <button onClick={() => speech(vocabulary[position || 0])}>🔈</button>
