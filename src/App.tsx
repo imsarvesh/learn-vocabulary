@@ -28,26 +28,32 @@ function App() {
     e = e || window.event;
 
     if (e.keyCode === 38) {
-      speech(vocabulary[position || 0]);
-      onChange(position + 1);
+      speech(vocabulary[position || 0], () => {
+        onChange(position + 1);
+      });
     } else if (e.keyCode === 40) {
       onChange(position - 1);
     } else if (e.keyCode === 37) {
       onChange(position - 1);
     } else if (e.keyCode === 39) {
-      speech(vocabulary[position || 0]);
-      onChange(position + 1);
+      speech(vocabulary[position || 0], () => {
+        onChange(position + 1);
+      });
     }
   }
 
   useEffect(() => {}, []);
 
-  const speech = (text: string) => {
+  const speech = (text: string, cb?) => {
+    debugger;
     var msg = new SpeechSynthesisUtterance();
     // var voices = window.speechSynthesis.getVoices();
     msg.text = text;
     // msg.voice = voices[1];
     window.speechSynthesis.speak(msg);
+    msg.onend = function () {
+      cb();
+    };
   };
 
   return (
@@ -83,8 +89,9 @@ function App() {
         </button>
         <button
           onClick={() => {
-            speech(vocabulary[position || 0]);
-            onChange(position + 1);
+            speech(vocabulary[position || 0], () => {
+              onChange(position + 1);
+            });
           }}
         >
           →
